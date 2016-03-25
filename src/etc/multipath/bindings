@@ -1,0 +1,6 @@
+# Sample aliases.
+# Override this file via `docker run -v </path/to/bindings>:/etc/multipath/bindings ...`
+#
+# alias wwid
+VCM 360000970000192606012533030304134
+network-health 360000970000192606012533030443842
