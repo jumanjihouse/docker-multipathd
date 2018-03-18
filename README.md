@@ -14,7 +14,7 @@ based on [Alpine Linux](https://www.alpinelinux.org/).
 Pull an already-built image
 ---------------------------
 
-We publish images for master branch plus each (clean) pull request.
+We publish images for master branch.
 The following tags are available:
 
 * `quay.io/jumanjiman/multipathd:latest`, which always points to the most recent build on master
@@ -39,22 +39,6 @@ your favorite editor.
 
 ![simplified workflow](assets/docker_workflow.png)
 
-You can smoke-test your images after CircleCI marks your PR green:
-
-    # On a test host...
-    #
-    # docker pull quay.io/jumanjiman/multipathd:<handle>_pull_<number>
-    #
-    docker pull quay.io/jumanjiman/multipathd:jumanjiman_pull_1
-
-    # Then run your smoke-tests to verify the image works.
-
-:warning: **You must `docker pull` after every test build when working in a PR.**
-
-We don't currently have an automated way to delete pull tags on quay.io
-after a PR is closed (abandoned or merged), so we have to delete stale tags
-manually.
-
 
 ### Operational status of SaaS providers
 
@@ -69,10 +53,10 @@ Build and test images locally
 On a host, such as devenv:
 
     # Build image.
-    script/build
+    ci/build.sh
 
     # Run the simplest of tests.
-    script/test
+    ci/test.sh
 
 
 License
