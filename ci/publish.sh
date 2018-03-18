@@ -22,7 +22,7 @@ fi
 docker login -u "${user}" -p "${pass}" quay.io
 
 for tag in ${tags}; do
-  docker tag -f "${IMAGE}" "${IMAGE}:${tag}"
+  docker tag "${IMAGE}" "${IMAGE}:${tag}"
   docker push "${IMAGE}:${tag}"
 done
 
