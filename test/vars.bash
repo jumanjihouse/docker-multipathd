@@ -1,3 +1,3 @@
 IMAGE="quay.io/jumanjiman/multipathd"
-VERSION="0.5.0-r4"
+VERSION="0.7.4-r0"
 GIT_HASH="$(git rev-parse HEAD)"
