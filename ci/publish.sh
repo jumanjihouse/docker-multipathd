@@ -1,13 +1,16 @@
 #!/bin/bash
+set -eEu
+set -o pipefail
 
-if [ -z ${CIRCLECI} ]; then
+if [[ -z "${CIRCLECI}" ]]; then
   echo This only runs on circleci. >&2
   exit 1
 fi
 
+# shellcheck disable=SC1091
 . test/vars.bash
 
-if [ ${CIRCLE_BRANCH} == "master" ]; then
+if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
   TAG="${VERSION}-$(date +%Y%m%dT%H%M)-git-${GIT_HASH:0:7}"
   tags="${TAG} latest"
 else
@@ -15,9 +18,12 @@ else
   tags="${TAG}"
 fi
 
-docker login -e ${mail} -u ${user} -p ${pass} quay.io
+# shellcheck disable=SC2154
+docker login -u "${user}" -p "${pass}" quay.io
+
 for tag in ${tags}; do
-  docker tag -f ${IMAGE} ${IMAGE}:${tag}
-  docker push ${IMAGE}:${tag}
+  docker tag -f "${IMAGE}" "${IMAGE}:${tag}"
+  docker push "${IMAGE}:${tag}"
 done
+
 docker logout

@@ -1,5 +1,0 @@
-#!/bin/sh
-
-. test/vars.bash
-
-docker build --rm --build-arg VERSION=${VERSION} -t ${IMAGE} src/
